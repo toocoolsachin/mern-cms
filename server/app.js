@@ -6,8 +6,6 @@ const cors = require('cors');
 // Load environment variables
 dotenv.config({ path: './config/config.env' });
 
-// Import Routes
-
 const app = express();
 
 // connect to database
@@ -30,6 +28,7 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 // Define Routes
+app.use('/api/users', require('./routes/userRoutes'));
 
 const PORT = process.env.PORT || 5000;
 
