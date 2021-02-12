@@ -29,6 +29,7 @@ app.use(cors());
 
 // Define Routes
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/posts', require('./routes/postRoutes'));
 
 const PORT = process.env.PORT || 5000;
 
