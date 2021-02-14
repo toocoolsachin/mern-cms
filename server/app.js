@@ -1,7 +1,9 @@
+const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const fileupload = require('express-fileupload');
 
 // Load environment variables
 dotenv.config({ path: './config/config.env' });
@@ -25,6 +27,8 @@ mongoose.connect(
 
 // Init Middlewares
 app.use(express.json({ extended: false }));
+app.use(fileupload());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // Define Routes

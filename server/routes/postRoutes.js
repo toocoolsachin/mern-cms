@@ -6,11 +6,22 @@ const {
   getPost,
   addComment,
 } = require('../controllers/post');
+const { check } = require('express-validator');
 
 // @route     POST api/posts
 // @desc      Create a post
 // @access    Private
-router.post('/', auth, addPost);
+router.post(
+  '/',
+  [
+    auth,
+    [
+      check('title', 'Title is required').not().isEmpty(),
+      check('content', 'Content is required').not().isEmpty(),
+    ],
+  ],
+  addPost
+);
 
 // @route     GET api/posts
 // @desc      Get all posts
@@ -25,6 +36,10 @@ router.get('/:id', getPost);
 // @route     POST api/posts/comment/:id
 // @desc      Comment on a post
 // @access    Private
-router.post('/comment/:id', auth, addComment);
+router.post(
+  '/comment/:id',
+  [auth, [check('text', 'Text is required').not().isEmpty()]],
+  addComment
+);
 
 module.exports = router;

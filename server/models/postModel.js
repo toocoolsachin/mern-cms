@@ -15,6 +15,10 @@ const PostSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default: 'no-photo.jpg',
+    },
     name: {
       type: String,
     },
@@ -34,8 +38,11 @@ const PostSchema = new Schema(
         name: {
           type: String,
         },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
       },
-      { timestamps: true },
     ],
   },
   { timestamps: true }
